@@ -7,12 +7,10 @@ const AuctionModel = require('../models/Auction');
 const RoomModel = require('../models/AuctionRoom');
 const connectDB = require('../config/db');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
 
 connectDB();
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
 
 const io = new Server(AuctionServer, {
   cors: {
@@ -103,7 +101,7 @@ function endAuction(roomCode) {
 }
 
 // module.exports = AuctionServer;
-AuctionPORT = 8001;
+AuctionPORT = 8001 || process.env.PORT;
 AuctionServer.listen(AuctionPORT, () => {
   console.log(`Auction Server is Runnig at port ${AuctionPORT}`);
 });

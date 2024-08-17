@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const router = require('../api/auth');
 const app = express();
-
 connectDB();
 
 app.use(cookieParser());
@@ -14,7 +13,7 @@ app.use(cors());
 
 app.use('/',router);
 
-const PORT =  8000;
+const PORT =  8000 || process.env.PORT;
 app.listen(PORT,() => console.log(`server started on port ${PORT}`));
 
 // AuctionPORT = 8001;
